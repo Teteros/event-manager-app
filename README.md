@@ -22,4 +22,5 @@ Wiki: https://github.com/teteros/event-manager-app/wiki
 ## Getting started
 Run the project in your favourite Kotlin environment, or run the JAR to see the interactive menu.
 Persistence is supported, so the data is saved to either events.xml or events.json, depending on what you chose in the sourcecode.
+
 ![image](https://user-images.githubusercontent.com/5067989/166138927-0b585d23-a567-40b3-b3c1-5b4f741024b0.png)
