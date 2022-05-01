@@ -45,7 +45,7 @@ fun mainMenu(): Int {
          > |   3) Update Event     |
          > |   4) Delete Event     |
          > -------------------------
-         > |   5) Book a Venue     |
+         > |   5) Book an Event    |
          > |   6) Search Events    |
          > -------------------------
          > |   7) Save             |

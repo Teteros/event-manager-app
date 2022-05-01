@@ -2,6 +2,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.6.21"
+
+    // Dokka - KDOC documentation tool
+    id("org.jetbrains.dokka") version "1.6.10"
+
     // Linting Support
     id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
     application
@@ -24,6 +28,9 @@ dependencies {
     // Persistence | XML and JSON
     implementation("com.thoughtworks.xstream:xstream:1.4.19")
     implementation("org.codehaus.jettison:jettison:1.4.1")
+
+    // Dokka Gradle plugin
+    implementation("org.jetbrains.dokka:dokka-gradle-plugin:1.6.20")
 }
 
 tasks.test {
@@ -36,4 +43,15 @@ tasks.withType<KotlinCompile>() {
 
 application {
     mainClass.set("MainKt")
+}
+
+tasks.jar {
+    manifest.attributes["Main-Class"] = "MainKt"
+    // for building a fat jar - include all dependencies
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from(sourceSets.main.get().output)
+    dependsOn(configurations.runtimeClasspath)
+    from({
+        configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
+    })
 }
